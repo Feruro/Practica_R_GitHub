@@ -1,8 +1,8 @@
 ---
-title: "RStudio y Github"
-runningheader: "Tufte Handout with R Markdown" # only for pdf output
-subtitle: "An implementation in R Markdown" # only for html output
-author: "JJ Allaire and Yihui Xie"
+title: "Informe de R en Markdown"
+runningheader: "R Markdown" # only for pdf output
+subtitle: "Una implementación con R Markdown" # only for html output
+author: "Felipe Ruiz"
 date: "`r Sys.Date()`"
 output:
   tufte::tufte_html: default
@@ -25,9 +25,10 @@ options(htmltools.dir.version = FALSE)
 
 # Introducción
 
-The Tufte handout style is a style that Edward Tufte uses in his books and handouts. Tufte's style is known for its extensive use of sidenotes, tight integration of graphics with text, and well-set typography. This style has been implemented in LaTeX and HTML/CSS[^1], respectively. We have ported both implementations into the [**tufte** package](https://github.com/rstudio/tufte). If you want LaTeX/PDF output, you may use the `tufte_handout` format for handouts, and `tufte_book` for books. For HTML output, use `tufte_html`. These formats can be either specified in the YAML metadata at the beginning of an R Markdown document (see an example below), or passed to the `rmarkdown::render()` function. See @R-rmarkdown for more information about **rmarkdown**.
+El estilo de Tufte handout es un estilo que Edward Tufte utiliza en sus libros y folletos. El estilo de Tufte se caracteriza por el uso extensivo de notas al margen, la integración ajustada de gráficos con texto y una tipografía bien establecida. Este estilo ha sido implementado en LaTeX y HTML/CSS[^1], respectivamente. Hemos portado ambas implementaciones al [**tufte** package](https://github.com/rstudio/tufte). Si deseas una salida en LaTeX/PDF, puedes utilizar el formato `tufte_handout` para folletos y `tufte_book` para libros. Para la salida en HTML, utiliza `tufte_html`. Estos formatos se pueden especificar en el encabezado YAML al comienzo de un documento R Markdown (ver el ejemplo a continuación) o pasarlos a la función `rmarkdown::render()`. Consulta @R-rmarkdown para obtener más información sobre **rmarkdown**.
 
-[^1]: See Github repositories [tufte-latex](https://github.com/tufte-latex/tufte-latex) and [tufte-css](https://github.com/edwardtufte/tufte-css)
+
+[^1]: Mire el repositorio [tufte-latex](https://github.com/tufte-latex/tufte-latex) and [tufte-css](https://github.com/edwardtufte/tufte-css)
 
 ``` yaml
 ---
@@ -39,30 +40,32 @@ output:
 ---
 ```
 
-There are two goals of this package:
+Este paquete tiene dos objetivos:
 
-1.  To produce both PDF and HTML output with similar styles from the same R Markdown document;
-2.  To provide simple syntax to write elements of the Tufte style such as side notes and margin figures, e.g. when you want a margin figure, all you need to do is the chunk option `fig.margin = TRUE`, and we will take care of the details for you, so you never need to think about `\begin{marginfigure} \end{marginfigure}` or `<span class="marginfigure"> </span>`; the LaTeX and HTML code under the hood may be complicated, but you never need to learn or write such code.
+1. Producir tanto salida en PDF como en HTML con estilos similares desde el mismo documento R Markdown.
+2. Proporcionar una sintaxis simple para escribir elementos del estilo Tufte, como notas al margen y figuras en el margen. Por ejemplo, si deseas una figura en el margen, todo lo que necesitas hacer es usar la opción del chunk `fig.margin = TRUE`, y nosotros nos encargaremos de los detalles para que no tengas que preocuparte por `\begin{marginfigure} \end{marginfigure}` o `<span class="marginfigure"> </span>`; el código LaTeX y HTML subyacente puede ser complicado, pero nunca necesitas aprender o escribir dicho código.
 
-If you have any feature requests or find bugs in **tufte**, please do not hesitate to file them to <https://github.com/rstudio/tufte/issues>. For general questions, you may ask them on StackOverflow: <https://stackoverflow.com/tags/rmarkdown>.
+Si tienes alguna solicitud de función o encuentras errores en **tufte**, no dudes en informarlos en <https://github.com/rstudio/tufte/issues>. Para preguntas generales, puedes preguntar en StackOverflow: <https://stackoverflow.com/tags/rmarkdown>.
 
-# Headings
 
-This style provides first and second-level headings (that is, `#` and `##`), demonstrated in the next section. You may get unexpected output if you try to use `###` and smaller headings.
+# Encabezados
 
-`r newthought('In his later books')`[^2], Tufte starts each section with a bit of vertical space, a non-indented paragraph, and sets the first few words of the sentence in small caps. To accomplish this using this style, call the `newthought()` function in **tufte** in an *inline R expression* `` `r ` `` as demonstrated at the beginning of this paragraph.[^3]
+Este estilo proporciona encabezados de primer y segundo nivel (es decir, `#` y `##`), como se demuestra en la siguiente sección. Puedes obtener una salida inesperada si intentas usar `###` y encabezados más pequeños.
+
+`r newthought('En sus libros más recientes')`[^2], Tufte comienza cada sección con un poco de espacio vertical, un párrafo sin sangría y establece las primeras palabras de la oración en versalitas. Para lograr esto con este estilo, llama a la función `newthought()` en **tufte** en una *expresión R en línea* `` `r ` `` como se muestra al principio de este párrafo.[^3]
 
 [^2]: [Beautiful Evidence](https://www.edwardtufte.com/tufte/books_be)
 
-[^3]: Note you should not assume **tufte** has been attached to your R session. You should either `library(tufte)` in your R Markdown document before you call `newthought()`, or use `tufte::newthought()`.
+[^3]: Ten en cuenta que no debes asumir que **tufte** ha sido instalado a tu sesión de R. Debes llamar `library(tufte)` en tu documento R Markdown antes de llamar a `newthought()`, o utilizar `tufte::newthought()`.
 
-# Figures
 
-## Margin Figures
+# Figuras
 
-Images and graphics play an integral role in Tufte's work. To place figures in the margin you can use the **knitr** chunk option `fig.margin = TRUE`. For example:
+## Figuras al margen
 
-```{r fig-margin, fig.margin = TRUE, fig.cap = "MPG vs horsepower, colored by transmission.", fig.width=3.5, fig.height=3.5, cache=TRUE, message=FALSE}
+Las imágenes y gráficos juegan un papel integral en el trabajo de Tufte. Para colocar figuras en el margen, puedes usar la opción de chunk **knitr** `fig.margin = TRUE`. Por ejemplo:
+
+```{r fig-margin, fig.margin = TRUE, fig.cap = "MPG vs horsepower, por tipo de transmisión.", fig.width=3.5, fig.height=3.5, cache=TRUE, message=FALSE}
 library(ggplot2)
 mtcars2 <- mtcars
 mtcars2$am <- factor(
@@ -73,7 +76,8 @@ ggplot(mtcars2, aes(hp, mpg, color = am)) +
   theme(legend.position = 'bottom')
 ```
 
-Note the use of the `fig.cap` chunk option to provide a figure caption. You can adjust the proportions of figures using the `fig.width` and `fig.height` chunk options. These are specified in inches, and will be automatically scaled down to fit within the handout margin.
+Observa el uso de la opción `fig.cap` para proporcionar un pie de figura. Puedes ajustar las proporciones de las figuras utilizando las opciones del chunk `fig.width` y `fig.height`. Estas se especifican en pulgadas y se escalarán automáticamente para ajustarse al margen del folleto.
+
 
 ## Arbitrary Margin Content
 
