@@ -164,18 +164,18 @@ ggplot(mtcars2, aes(hp, mpg, color = am)) +
   theme(legend.position = &#39;bottom&#39;)</code></pre>
 <p>Observa el uso de la opción <code>fig.cap</code> para proporcionar un pie de figura. Puedes ajustar las proporciones de las figuras utilizando las opciones del chunk <code>fig.width</code> y <code>fig.height</code>. Estas se especifican en pulgadas y se escalarán automáticamente para ajustarse al margen del folleto.</p>
 </div>
-<div id="arbitrary-margin-content" class="section level2">
-<h2>Arbitrary Margin Content</h2>
-<p>In fact, you can include anything in the margin using the <strong>knitr</strong> engine named <code>marginfigure</code>. Unlike R code chunks <code>```{r}</code>, you write a chunk starting with <code>```{marginfigure}</code> instead, then put the content in the chunk. See an example on the right about the first fundamental theorem of calculus.</p>
-<p><label for="tufte-mn-2" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-2" class="margin-toggle"><span class="marginnote"><span style="display: block;">We know from <em>the first fundamental theorem of calculus</em> that
-for <span class="math inline"><span class="math inline">\(x\)</span></span> in <span class="math inline"><span class="math inline">\([a, b]\)</span></span>: <span class="math display"><span class="math display">\[\frac{d}{dx}\left( \int_{a}^{x}
+<div id="contenido-arbitrio-al-margen" class="section level2">
+<h2>Contenido arbitrio al margen</h2>
+<p>De hecho, puedes incluir cualquier cosa en el margen utilizando el motor <strong>knitr</strong> llamado <code>marginfigure</code>. A diferencia de los bloques de código R <code>```{r}</code>, puedes escribir un chunk empezando con <code>```{marginfigure}</code> y luego colocas el contenido en el bloque. Mira un ejemplo sobre el primer teorema fundamental del cálculo a la derecha.</p>
+<p><label for="tufte-mn-2" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-2" class="margin-toggle"><span class="marginnote"><span style="display: block;">Sabemos del <em>primer teorema fundamental del cálculo</em> que para
+<span class="math inline"><span class="math inline">\(x\)</span></span> en <span class="math inline"><span class="math inline">\([a, b]\)</span></span>: <span class="math display"><span class="math display">\[\frac{d}{dx}\left( \int_{a}^{x}
 f(u)\,du\right)=f(x).\]</span></span></span></span></p>
-<p>For the sake of portability between LaTeX and HTML, you should keep the margin content as simple as possible (syntax-wise) in the <code>marginefigure</code> blocks. You may use simple Markdown syntax like <code>**bold**</code> and <code>_italic_</code> text, but please refrain from using footnotes, citations, or block-level elements (e.g. blockquotes and lists) there.</p>
-<p>Note: if you set <code>echo = FALSE</code> in your global chunk options, you will have to add <code>echo = TRUE</code> to the chunk to display a margin figure, for example <code>```{marginfigure, echo = TRUE}</code>.</p>
+<p>Por razones de portabilidad entre LaTeX y HTML, debes mantener el contenido del margen lo más simple posible (sintaxis-wise) en los bloques <code>marginfigure</code>. Puedes usar una sintaxis de Markdown simple como texto en <code>**negrita**</code> o <code>_cursiva_</code>, pero evita el uso de notas al pie, citas o elementos de nivel de bloque (por ejemplo, citas textuales y listas) allí.</p>
+<p>Nota: si estableces <code>echo = FALSE</code> en tus opciones globales de chunk, deberás agregar <code>echo = TRUE</code> al chunk para mostrar una figura en el margen, por ejemplo <code>```{marginfigure, echo = TRUE}</code>.</p>
 </div>
-<div id="full-width-figures" class="section level2">
-<h2>Full Width Figures</h2>
-<p>You can arrange for figures to span across the entire page by using the chunk option <code>fig.fullwidth = TRUE</code>.</p>
+<div id="figuras-de-ancho-completo" class="section level2">
+<h2>Figuras de ancho completo</h2>
+<p>Puedes hacer que las figuras abarquen toda la página utilizando la opción del chunk <code>fig.fullwidth = TRUE</code>.</p>
 <pre class="r"><code>ggplot(diamonds, aes(carat, price)) + geom_smooth() +
   facet_grid(~ cut)</code></pre>
 <div class="figure fullwidth">
