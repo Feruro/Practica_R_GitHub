@@ -16,7 +16,7 @@ bibliography: skeleton.bib
 link-citations: yes
 ---
 
-```{r setup, include=FALSE, cache=TRUE}
+```{r setup, include=FALSE}
 library(tufte)
 # invalidate cache when the tufte version changes
 knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
